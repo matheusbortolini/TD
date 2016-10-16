@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <body>
+    {% if documents %}
+        <ul>
+        {% for document in documents %}
+            <br><a href="{{ document.doc_file.url }}">{{ document.doc_file.name }}</a></br>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No documents.</p>
+    {% endif %}
+        <form action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.doc_file.label }}</p>
+            <p>
+                {{ form.doc_file.errors }}
+                {{ form.doc_file }}
+            </p>
+            <p><input type="submit" value="Upload" /></p>
+        </form>
+    </body>
+</html>

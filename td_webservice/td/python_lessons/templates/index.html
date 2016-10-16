@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <form action="{% url 'login' %}" method="get" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p><input type="submit" value="Login" /></p>
+    </form>
+    <body>
+        <ul>
+        {% for document in documents %}
+            <br><a href="{{ document.doc_file.url }}">{{ document.doc_file.name }}</a></br>
+        {% endfor %}
+        </ul>
+    <h3>Para acessar mais aulas registre-se</h3>
+    <form action="{% url 'registration' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p><input type="submit" value="Register" /></p>
+    </form>
+    </body>
+</html>
